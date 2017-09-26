@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Post;
+use Session;
 
 class PostController extends Controller
 {
@@ -63,6 +64,11 @@ class PostController extends Controller
         $post->save(); // save the object
         // save the new item into the Database
 
+        // If we successfully saved this into the database I wonna be able to pass this to the user
+        //Session::flash('key', 'value'); // Creates a flass variable that OR a session that exists for a single request
+        // the 'key' - when we try to  reference it
+        // the 'value' - this will be the message you want to output 
+        Session::flash('success', 'The blog post was successfully saved!');
 
         // 3. redirect to another page : show() or index()
         return redirect()->route('posts.show', $post->id); // redirect to the named post called posts.show
@@ -77,7 +83,7 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        //
+        return view('posts.show');
     }
 
     /**
