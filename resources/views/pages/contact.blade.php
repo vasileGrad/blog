@@ -79,8 +79,10 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                    Contact Me
                 </div>
+
+                <p>I would love to chat Laravel Web aps!</p>
 
                 <div class="links">
                     <a href="https://laravel.com/docs">Documentation</a>
