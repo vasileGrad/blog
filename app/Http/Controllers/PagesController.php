@@ -14,7 +14,27 @@ class PagesController extends Controller {
 	}
 
 	public function getAbout() {
-		return view('pages.about');
+		$first = 'Vasile';
+		$last = 'Grad';
+
+		$fullname = $first . " " . $last;
+		$email = 'vasile@gmail.com';
+		$data = [];
+		$data['email'] = $email;
+		$data['fullname'] = $fullname;
+
+		# return view('pages.about')->with("fullname", $fullname);
+		
+		# pass one variable - this is the sintax used
+		# return view('pages.about')->withFullname($fullname);
+
+		# pass multiple variable
+		# return view('pages.about')->withFullname($fullname)->withEmail($email);
+
+		# pass an array called data
+		return view('pages.about')->withData($data); 
+
+
 	}
 
 	public function getContact() {
