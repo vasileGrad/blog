@@ -48,7 +48,7 @@
 						{{-- <a href="#" class="btn btn-primary btn-block">Edit</a> --}} 
 					</div>
 					<div class="col-sm-6">
-						{!! Html::linkRoute('posts.update', 'Save Changes', array($post->id), array('class' => 'btn btn-success btn-block')) !!}
+						{{ Form::submit('Save Changes', ['class' => 'btn btn-success btn-block']) }}
 						{{-- <a href="#" class="btn btn-danger btn-block">Delete</a> --}}
 					</div>
 				</div>
