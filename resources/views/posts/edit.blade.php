@@ -15,7 +15,7 @@
 	
 		We must pass in the Object that we have in the form here that contains the model data
 		-->
-		{!! Form::model($post, ['route' => ['posts.update', $post->id]]) !!}
+		{!! Form::model($post, ['route' => ['posts.update', $post->id], 'method' => 'PUT']) !!}
 		<div class="col-md-8">
 			<!-- null is the default value for the title -->
 			{{ Form::label('title', "Title:") }}

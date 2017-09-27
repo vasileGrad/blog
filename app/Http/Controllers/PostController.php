@@ -19,6 +19,8 @@ class PostController extends Controller
     public function index()
     {
         // create a variable and store all the blog posts from DB
+
+        // it's stores a brande new row to the DB
         $posts = Post::all();
 
         // return a view and pass in the above variable
@@ -121,7 +123,33 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // Validate the data
+        $this->validate($request, array(
+            // rules 
+            'title' => 'required|max:255',
+            'body' => 'required'
+        ));
+        // If it's not validate it's automatecally reload the Edit page and then it's gonna pass in any error that we have
+
+        // Save the data to the database
+
+        // it's updating an existing row
+        // grab the post object from the DB
+        $post = Post::find($id);
+        // we are going to find the existing post and save the changes on top of the existing post
+
+        // set the appropriate thinks and match it with the fields that we have in the Edit Form
+        // ->input = identify something from the post input that was passed in to the post
+        $post->title = $request->input('title');
+        $post->body = $request->input('body');
+
+        $post->save();
+
+        // Set flash data with success message
+        Session::flash('success', 'This post was successfully saved!');
+
+        // redirect with flash data to posts.show
+        return redirect()->route('posts.show', $post->id);
     }
 
     /**
