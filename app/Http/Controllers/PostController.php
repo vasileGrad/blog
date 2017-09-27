@@ -83,7 +83,10 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        return view('posts.show');
+        // find an item by the id that it's past in the url
+        $post = Post::find($id);
+        // render the view and it's gonna pass in a variable called post which is equal to $post
+        return view('posts.show')->withPost($post);
     }
 
     /**

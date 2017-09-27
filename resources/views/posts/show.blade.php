@@ -2,8 +2,10 @@
 
 @section('title', '| View Post')
 
-@section('Content')
+@section('content')
 	
-	<p class="lead">This is the blog post</p>
+	<h1>{{ $post->title }}</h1>  
+
+	<p class="lead">{{ $post->body }}</p>
 
 @endsection
