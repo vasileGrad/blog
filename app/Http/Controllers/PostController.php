@@ -21,7 +21,8 @@ class PostController extends Controller
         // create a variable and store all the blog posts from DB
 
         // it's stores a brande new row to the DB
-        $posts = Post::all();
+        //$posts = Post::all();
+        $posts = Post::orderBy('id', 'desc')->paginate(5); // 5 is the number of posts per page
 
         // return a view and pass in the above variable
         return view('posts.index')->withPosts($posts);
