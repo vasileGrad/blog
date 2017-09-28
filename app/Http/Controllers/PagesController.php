@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Post;
+
 class PagesController extends Controller {
 
 	public function getIndex() {
@@ -10,7 +12,12 @@ class PagesController extends Controller {
 		# receive from the modal
 		# compile or process data again if needed
 		# pas that data to the correct viewpa
-		return view('pages.welcome');
+
+		// Post::all() - means Select * from 'post'
+		$posts = Post::orderBy('created_at', 'desc')->limit(4)->get();
+
+
+		return view('pages.welcome')->withPosts($posts);
 	}
 
 	public function getAbout() {

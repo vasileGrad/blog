@@ -34,7 +34,15 @@
 						{!! Form::submit('Delete', ['class' => 'btn btn-danger btn-block']) !!}
 						{{-- <a href="#" class="btn btn-danger btn-block">Delete</a> --}}
 						{!! Form::close() !!}
+
 					</div>
+
+					<div class="row">
+						<div class="col-sm-12">
+							{!! Html::linkRoute('posts.index', '<< See All Posts', [], ['class' => 'btn btn-default btn-block btn-h1-spacing']) !!}
+						</div>
+					</div>
+
 				</div>
 
 
