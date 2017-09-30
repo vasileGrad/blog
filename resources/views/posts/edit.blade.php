@@ -26,6 +26,10 @@
 
 				'form-spacing-top' - we created in the css
 				-->
+			{{ Form::label('slug', 'Slug:', ['class' => 'form-spacing-top']) }}
+			{{ Form::text('slug', null, ['class' => 'form-control']) }}
+
+
 			{{ Form::label('body', "Body:", ['class' => 'form-spacing-top']) }}
 			{{ Form::textarea('body', null, ['class' => 'form-control']) }}
 		</div>

@@ -55,6 +55,7 @@ class PostController extends Controller
         $this->validate($request, array(
             // rules 
             'title' => 'required|max:255',
+            'slug' => 'required|alpha_dash|min:5|max:255|unique:posts,slug',
             'body' => 'required'
         )); // validate the request
         // if the data is not valid what it does? Jumps back to the Create() action and will post the errors
@@ -67,6 +68,7 @@ class PostController extends Controller
 
         // adding thing to this brand new object to be created 
         $post->title = $request->title;
+        $post->slug = $request->slug;
         $post->body = $request->body;
 
         $post->save(); // save the object
@@ -128,6 +130,7 @@ class PostController extends Controller
         $this->validate($request, array(
             // rules 
             'title' => 'required|max:255',
+            'slug' => 'required|alpha_dash|min:5|max:255|unique:posts,slug',
             'body' => 'required'
         ));
         // If it's not validate it's automatecally reload the Edit page and then it's gonna pass in any error that we have
@@ -142,6 +145,7 @@ class PostController extends Controller
         // set the appropriate thinks and match it with the fields that we have in the Edit Form
         // ->input = identify something from the post input that was passed in to the post
         $post->title = $request->input('title');
+        $post->slug = $request->input('slug');
         $post->body = $request->input('body');
 
         $post->save();
