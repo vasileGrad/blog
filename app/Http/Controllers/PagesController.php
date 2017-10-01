@@ -16,7 +16,6 @@ class PagesController extends Controller {
 		// Post::all() - means Select * from 'post'
 		$posts = Post::orderBy('created_at', 'desc')->limit(4)->get();
 
-
 		return view('pages.welcome')->withPosts($posts);
 	}
 
@@ -40,8 +39,6 @@ class PagesController extends Controller {
 
 		# pass an array called data
 		return view('pages.about')->withData($data); 
-
-
 	}
 
 	public function getContact() {

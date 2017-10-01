@@ -129,12 +129,21 @@ class PostController extends Controller
         // Validate the data
         $post = Post::find($id);
 
+        // If the slug has change or not then validate or not
+        if ($request->input('slug') == $post->slug) {
+            $this->validate($request, array(
+            // rules 
+            'title' => 'required|max:255',
+            'body' => 'required'
+        ));
+        } else {
         $this->validate($request, array(
             // rules 
             'title' => 'required|max:255',
             'slug' => 'required|alpha_dash|min:5|max:255|unique:posts,slug',
             'body' => 'required'
         ));
+    }
         // If it's not validate it's automatecally reload the Edit page and then it's gonna pass in any error that we have
 
         // Save the data to the database
