@@ -127,6 +127,8 @@ class PostController extends Controller
     public function update(Request $request, $id)
     {
         // Validate the data
+        $post = Post::find($id);
+
         $this->validate($request, array(
             // rules 
             'title' => 'required|max:255',
