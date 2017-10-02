@@ -11,8 +11,6 @@
     <!-- Build the main body -->
     <div class="container">
       @include('partials._messages')
-       
-      {{ Auth::check() ? "Logged In ". Auth::user()->name : "Logged Out" }}﻿ 
 
       @yield('content')
 
