@@ -22,7 +22,7 @@
 //Route::post('auth/register', 'Auth\AuthController@postRegister');
 
 
-// those routes are for my Laravel 5.5   - they work!!! :) 
+// those routes are for my Laravel 5.5   - they work!!! :)
 
 // Authentication Routes
 Route::get('auth/login', 'Auth\LoginController@showLoginForm')->name('login');

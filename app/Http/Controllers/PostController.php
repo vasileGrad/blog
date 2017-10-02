@@ -11,6 +11,10 @@ use Session;
 
 class PostController extends Controller
 {
+
+    public function __construct() {
+        $this->middleware('auth'); // only autenticated users
+    }
     /**
      * Display a listing of the resource.
      *
