@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Post;
+use App\Category;
 use Session;
 
 class PostController extends Controller
@@ -40,7 +41,9 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('posts.create');
+        $categories = Category::all();
+
+        return view('posts.create')->withCategories($categories);
     }
 
     /**
@@ -58,9 +61,10 @@ class PostController extends Controller
         // 1. Validate the data
         $this->validate($request, array(
             // rules 
-            'title' => 'required|max:255',
-            'slug' => 'required|alpha_dash|min:5|max:255|unique:posts,slug',
-            'body' => 'required'
+            'title'         => 'required|max:255',
+            'slug'          => 'required|alpha_dash|min:5|max:255|unique:posts,slug',
+            'category_id'   => 'required|integer',
+            'body'          => 'required'
         )); // validate the request
         // if the data is not valid what it does? Jumps back to the Create() action and will post the errors
 
@@ -73,6 +77,7 @@ class PostController extends Controller
         // adding thing to this brand new object to be created 
         $post->title = $request->title;
         $post->slug = $request->slug;
+        $post->category_id = $request->category_id;
         $post->body = $request->body;
 
         $post->save(); // save the object
@@ -98,7 +103,7 @@ class PostController extends Controller
     public function show($id)
     {
         // find an item by the id that it's past in the url
-        $post = Post::find($id);
+        $post = Post::find($id);  // also deep linking for the categories
         // render the view and it's gonna pass in a variable called post which is equal to $post
         return view('posts.show')->withPost($post);
     }
@@ -116,9 +121,14 @@ class PostController extends Controller
         // $post = our model, and our model is Post
         // we create a Model object called $post and finds a Model from the Database and stores it in this variable and then pass it into the View
         $post = Post::find($id);  // Find that post by the id number
+        $categories = Category::all();
+        $cats = array();
+        foreach ($categories as $category) {
+            $cats[$category->id] = $category->name;
+        }
 
         // return the view and pass in the var we previously created
-        return view('posts.edit')->withPost($post);
+        return view('posts.edit')->withPost($post)->withCategories($cats);
     }
 
     /**
@@ -138,6 +148,7 @@ class PostController extends Controller
             $this->validate($request, array(
             // rules 
             'title' => 'required|max:255',
+            'category_id' => 'required|integer',
             'body' => 'required'
         ));
         } else {
@@ -145,6 +156,7 @@ class PostController extends Controller
             // rules 
             'title' => 'required|max:255',
             'slug' => 'required|alpha_dash|min:5|max:255|unique:posts,slug',
+            'category_id' => 'required|integer',
             'body' => 'required'
         ));
     }
@@ -161,6 +173,7 @@ class PostController extends Controller
         // ->input = identify something from the post input that was passed in to the post
         $post->title = $request->input('title');
         $post->slug = $request->input('slug');
+        $post->category_id = $request->input('category_id');
         $post->body = $request->input('body');
 
         $post->save();
