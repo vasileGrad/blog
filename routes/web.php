@@ -24,7 +24,6 @@
 
 // those routes are for my Laravel 5.5   - they work!!! :)
 
-Route::group(['middleware' => ['web']], function() {
 
 	// Authentication Routes
 	Route::get('auth/login', 'Auth\LoginController@showLoginForm')->name('login');
@@ -35,12 +34,9 @@ Route::group(['middleware' => ['web']], function() {
 	Route::get('auth/register', 'Auth\RegisterController@showRegistrationForm')->name('register');
 	Route::post('auth/register', 'Auth\RegisterController@register');
 
-
 	Route::get('blog/{slug}', ['as' => 'blog.single', 'uses' => 'BlogController@getSingle'])->where('slug', '[\w\d\-\_]+');
 	Route::get('blog', ['uses' => 'BlogController@getIndex', 'as' => 'blog.index']);
 	Route::get('contact', 'PagesController@getContact');
 	Route::get('about', 'PagesController@getAbout');
 	Route::get('/', 'PagesController@getIndex');
 	Route::resource('posts', 'PostController');
-
-});
