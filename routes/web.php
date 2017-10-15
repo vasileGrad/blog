@@ -40,3 +40,7 @@
 	Route::get('about', 'PagesController@getAbout');
 	Route::get('/', 'PagesController@getIndex');
 	Route::resource('posts', 'PostController');
+
+	// Categories
+	Route::resource('categories', 'CategoryController', ['except' => ['create']]); // resource gives us all this additional routes for the CRUD functions, except the create function because we have deleted the create functionality
+	// 'only' - specifies only the following functionalities
