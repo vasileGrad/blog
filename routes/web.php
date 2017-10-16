@@ -44,3 +44,6 @@
 	// Categories
 	Route::resource('categories', 'CategoryController', ['except' => ['create']]); // resource gives us all this additional routes for the CRUD functions, except the create function because we have deleted the create functionality
 	// 'only' - specifies only the following functionalities
+
+	// Tags
+	Route::resource('tags', 'TagController', ['except' => ['create']]);
