@@ -223,6 +223,8 @@ class PostController extends Controller
     {
         // Find the post item
         $post = Post::find($id);
+        // removes any reference of posts to the post_tags Model
+        $post->tags()->detach();
 
         $post->delete();
 
