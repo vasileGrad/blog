@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Post;
+use App\Tag;
 use App\Category;
 use Session;
 
@@ -42,8 +43,9 @@ class PostController extends Controller
     public function create()
     {
         $categories = Category::all();
+        $tags = Tag::all();
 
-        return view('posts.create')->withCategories($categories);
+        return view('posts.create')->withCategories($categories)->withTags($tags);
     }
 
     /**
@@ -57,6 +59,7 @@ class PostController extends Controller
         // Request $request  - it's pulling in all the data from the request that may have been submitted with the form 
         // We take this data, we process it and then we are going to submit it to the database 
 
+        //dd($request); // dump and die
 
         // 1. Validate the data
         $this->validate($request, array(
@@ -82,6 +85,13 @@ class PostController extends Controller
 
         $post->save(); // save the object
         // save the new item into the Database
+
+        // this post it's gonna give us an id number
+        $post->tags()->sync($request->tags, false);
+
+        // $request->tags - is the id of the post
+        // false - telling to overide the existing association. If you forget to write false it will delete all and set these as a new association. We want to add them !!!!!!
+        // sync - creates that relationship and sync it up
 
         // If we successfully saved this into the database I wonna be able to pass this to the user
         //Session::flash('key', 'value'); // Creates a flass variable that OR a session that exists for a single request
@@ -127,8 +137,15 @@ class PostController extends Controller
             $cats[$category->id] = $category->name;
         }
 
+        $tags = Tag::all();
+        $tags2 = array();
+        // we create an associative array
+        foreach ($tags as $tag) {
+            $tags2[$tag->id] = $tag->name;
+        }
+
         // return the view and pass in the var we previously created
-        return view('posts.edit')->withPost($post)->withCategories($cats);
+        return view('posts.edit')->withPost($post)->withCategories($cats)->withTags($tags2);
     }
 
     /**
@@ -177,6 +194,17 @@ class PostController extends Controller
         $post->body = $request->input('body');
 
         $post->save();
+
+        // if it's empty we are going to sync it out with 0 items
+        if (isset($request->tags)) {
+            // $request->tags - is an array
+            $post->tags()->sync($request->tags); // the same effect
+        } else {
+            $post->tags()->sync(array());
+        }
+
+        // $post->tags()->sync($request->tags, true);
+        // it will take all the relationships for this post, it removes them and adds whatever it's in this array. It deletes the old once
 
         // Set flash data with success message
         Session::flash('success', 'This post was successfully saved!');
