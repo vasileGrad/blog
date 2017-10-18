@@ -48,3 +48,5 @@
 
 	// Tags
 	Route::resource('tags', 'TagController', ['except' => ['create']]);
+
+	// Comments
