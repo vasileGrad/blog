@@ -33,38 +33,46 @@
 					<div class="comment-content">
 						{{ $comment->comment }}
 					</div>
-					
+					<hr>
 				</div>
 			@endforeach
 		</div>
 	</div>
 
-	<div class="row">
-		<div id="comment-form" class="col-md-8 col-md-offset-2 margin-top-button-comment">
-			<!-- We submit a comment but we attach a post id for the comment that was linked to -->
-			{{ Form::open(['route' => ['comments.store', $post->id], 'method' => 'POST']) }}
+	@if (Auth::check()) 
+		<div class="row">
+			<div id="comment-form" class="col-md-8 col-md-offset-2 margin-top-button-comment">
+				<!-- We submit a comment but we attach a post id for the comment that was linked to -->
+				{{ Form::open(['route' => ['comments.store', $post->id], 'method' => 'POST']) }}
 
-				<div class="row">
-					<div class="col-md-6">
-						{{ Form::label('name', "Name:") }}
-						{{ Form::text('name', null, ['class' => 'form-control']) }}
+					<div class="row">
+						<div class="col-md-6">
+							{{ Form::label('name', "Name:") }}
+							{{ Form::text('name', null, ['class' => 'form-control']) }}
+						</div>
+
+						<div class="col-md-6">
+							{{ Form::label('email', "Email:") }}
+							{{ Form::text('email', null, ['class' => 'form-control']) }}
+						</div>
+
+						<div class="col-md-12">
+							{{ Form::label('comment', "Comment:") }}
+							{{ Form::textarea('comment', null, ['class' => 'form-control', 'rows' => '5']) }}
+
+							{{ Form::submit('Add Comment', ['class' => 'btn btn-success btn-block margin-top-button']) }}
+						</div>
 					</div>
 
-					<div class="col-md-6">
-						{{ Form::label('email', "Email:") }}
-						{{ Form::text('email', null, ['class' => 'form-control']) }}
-					</div>
-
-					<div class="col-md-12">
-						{{ Form::label('comment', "Comment:") }}
-						{{ Form::textarea('comment', null, ['class' => 'form-control', 'rows' => '5']) }}
-
-						{{ Form::submit('Add Comment', ['class' => 'btn btn-success btn-block margin-top-button']) }}
-					</div>
-				</div>
-
-			{{ Form::close() }}
+				{{ Form::close() }}
+			</div>
 		</div>
-	</div>
+	@else 
+		<div class="row">
+			<div id="comment-form" class="col-md-8 col-md-offset-2 margin-top-button-comment">
+				<a href="{{ route('login') }}"><button class="btn btn-primary">Comment</button></a>
+			</div>
+		</div>
+	@endif
 
 @endsection
