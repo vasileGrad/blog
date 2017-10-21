@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Post;
 use Mail;
+use Session;
 
 class PagesController extends Controller {
 
@@ -62,11 +63,15 @@ class PagesController extends Controller {
 
 			);
 
-		Mail::send('email.contact', $data, function($message) use ($data){
+		Mail::send('emails.contact', $data, function($message) use ($data){
 			$message->from($data['email']);
 			$message->to('e746d0be70-8c8702@inbox.mailtrap.io');
 			$message->subject($data['subject']);
 		});
+
+		Session::flash('success', 'You Email was Successfully Sent!');
+
+		return redirect('/');
 	}
 
 
