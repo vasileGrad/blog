@@ -11,6 +11,7 @@ use App\Tag;
 use App\Category;
 use Session;
 use Purifier;
+use Image;
 
 class PostController extends Controller
 {
@@ -85,6 +86,23 @@ class PostController extends Controller
 
         // we use Purifier to clean and secure
         $post->body = Purifier::clean($request->body);
+
+        // save our Image 
+        if($request->hasFile('featured_image')) {
+            $image = $request->file('featured_image');
+            // rename the file
+            $filename = time() . '.' . $image->getClientOriginalExtension();
+            // choose a location public/images/$filename
+            $location = public_path('images/' . $filename);
+            // create an Image object and pass in any settings that we need
+            // take the image, resize it to where we want and then saves it at this location
+            Image::make($image)->resize(800, 400)->save($location);
+
+            // put the file in the Database
+            // save the name of the file inside the post column
+            $post->image = $filename;
+
+        }
 
         $post->save(); // save the object
         // save the new item into the Database
