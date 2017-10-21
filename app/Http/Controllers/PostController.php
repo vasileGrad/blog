@@ -12,6 +12,7 @@ use App\Category;
 use Session;
 use Purifier;
 use Image;
+use Storage;
 
 class PostController extends Controller
 {
@@ -69,7 +70,8 @@ class PostController extends Controller
             'title'         => 'required|max:255',
             'slug'          => 'required|alpha_dash|min:5|max:255|unique:posts,slug',
             'category_id'   => 'required|integer',
-            'body'          => 'required'
+            'body'          => 'required',
+            'featured_image'=> 'sometimes|image'
         )); // validate the request
         // if the data is not valid what it does? Jumps back to the Create() action and will post the errors
 
@@ -181,23 +183,15 @@ class PostController extends Controller
         // Validate the data
         $post = Post::find($id);
 
-        // If the slug has change or not then validate or not
-        if ($request->input('slug') == $post->slug) {
-            $this->validate($request, array(
-            // rules 
-            'title' => 'required|max:255',
-            'category_id' => 'required|integer',
-            'body' => 'required'
-        ));
-        } else {
         $this->validate($request, array(
             // rules 
             'title' => 'required|max:255',
-            'slug' => 'required|alpha_dash|min:5|max:255|unique:posts,slug',
+            'slug' => "required|alpha_dash|min:5|max:255|unique:posts,slug,$id",
             'category_id' => 'required|integer',
-            'body' => 'required'
+            'body' => 'required',
+            'featured_image' => 'image'
         ));
-    }
+
         // If it's not validate it's automatecally reload the Edit page and then it's gonna pass in any error that we have
 
         // Save the data to the database
@@ -213,6 +207,33 @@ class PostController extends Controller
         $post->slug = $request->input('slug');
         $post->category_id = $request->input('category_id');
         $post->body = Purifier::clean($request->input('body'));
+
+        // if it is added the photo we need to update
+        if ($request->hasFile('featured_image')) {
+            
+            // Add the new photo
+            $image = $request->file('featured_image');
+            // rename the file
+            $filename = time() . '.' . $image->getClientOriginalExtension();
+            // choose a location public/images/$filename
+            $location = public_path('images/' . $filename);
+            // create an Image object and pass in any settings that we need
+            // take the image, resize it to where we want and then saves it at this location
+            Image::make($image)->resize(800, 400)->save($location);
+
+            $oldFilename = $post->image;
+
+            // Update the Database to reflect the new photo
+
+            // put the file in the Database
+            // save the name of the file inside the post column
+            $post->image = $filename;
+
+            // Delete the old photo
+            Storage::delete($oldFilename);
+            // modification in the config/filesystems.php to modify the path 'root' => public_path('images/'),
+            // by Default it's gonna go to the public file, it's gonna find something with the old filename and it's gonna delete it 
+        }
 
         $post->save();
 
@@ -246,6 +267,7 @@ class PostController extends Controller
         $post = Post::find($id);
         // removes any reference of posts to the post_tags Model
         $post->tags()->detach();
+        Storage::delete($post->image);
 
         $post->delete();
 
