@@ -32,14 +32,19 @@
                 
             </div>
 
-            <div class="col-md-4 col-md-offset-1">
-                <h2>Categories</h2><br>
+            <div class="col-md-3 col-md-offset-1">
+                <div class="list-group">
+                              <a href="{{ route('categories.index') }}" class="list-group-item active"><h4>
+                                Categories
+                              </h4></a>
 
-                <div class="row">
-                    <div class="col-md-8 col-md-offset-1">
-                        @foreach($categories as $category)
-                            <p><a href="{{ route('categories.show', $category->id) }}">{{ $category->name }}</a></p><hr>
-                        @endforeach
+                    <div class="row">
+                        <div class="col-md-12">
+                            @foreach($categories as $category)
+                                  <a href="{{ route('categories.show', $category->id) }}" class="list-group-item">{{ $category->name }}</a>
+                                
+                            @endforeach
+                        </div>
                     </div>
                 </div>
                 

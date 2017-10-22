@@ -13,29 +13,31 @@
 		</div>
 	</div>
 
-	<div class="row">
-		<div class="col-md-12">
-			<table class="table">
-				<thead>
-					<tr>
-						<th>#</th>
-						<th>Title</th>
-						<th></th>
-					</tr>
-				</thead>
+	@if ( $category->posts()->count() )
+		<div class="row">
+			<div class="col-md-12">
+				<table class="table">
+					<thead>
+						<tr>
+							<th>#</th>
+							<th>Title</th>
+							<th></th>
+						</tr>
+					</thead>
 
-				<tbody>
-					<!-- We loop to every single post that is associated with our category -->
-					@foreach ($category->posts as $post)
-					<tr>
-						<th>{{ $post->id }}</th>
-						<td>{{ $post->title }}</td>
-						
-						<td><a href="{{ route('posts.show', $post->id) }}" class="btn btn-default btn-xs">View</a></td>
-					</tr>
-					@endforeach
-				</tbody>
-			</table>
+					<tbody>
+						<!-- We loop to every single post that is associated with our category -->
+						@foreach ($category->posts as $post)
+						<tr>
+							<th>{{ $post->id }}</th>
+							<td>{{ $post->title }}</td>
+							
+							<td><a href="{{ route('posts.show', $post->id) }}" class="btn btn-default btn-xs">View</a></td>
+						</tr>
+						@endforeach
+					</tbody>
+				</table>
+			</div>
 		</div>
-	</div>
+	@endif
 @endsection

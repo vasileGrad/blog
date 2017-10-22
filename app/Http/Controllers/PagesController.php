@@ -22,7 +22,7 @@ class PagesController extends Controller {
 		// Post::all() - means Select * from 'post'
 		$posts = Post::orderBy('created_at', 'desc')->limit(4)->get();
 
-        $categories = Category::orderBy('created_at', 'desc')->limit(3)->get();
+        $categories = Category::orderBy('created_at', 'asc')->limit(5)->get();
 
 		return view('pages.welcome')->withPosts($posts)->withCategories($categories);
 	}

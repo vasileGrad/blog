@@ -9,7 +9,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">Laravel Blog</a>
+      <p class="navbar-brand">Laravel Blog</p>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->

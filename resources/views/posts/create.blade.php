@@ -46,10 +46,10 @@
 			   		@endforeach
 			   	</select>
 
-			   	{{ Form::label('featured_image', 'Upload Featured Image:') }}
+			   	{{ Form::label('featured_image', 'Upload Featured Image:', ['class' => 'margin-top-nav']) }}
 			   	{{ Form::file('featured_image') }}
 
-			    {{ Form::label('body', 'Post Body:')}}
+			    {{ Form::label('body', 'Post Body:', ['class' => 'margin-top-nav'])}}
 			    {{ Form::textarea('body', null, array('class' => 'form-control')) }}
 
 			    {{ Form::submit('Create Post', array('class' => 'btn btn-success btn-lg btn-block', 'style' => 'margin-top: 20px;')) }}
