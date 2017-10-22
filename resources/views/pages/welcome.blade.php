@@ -7,7 +7,7 @@
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
                 <div class="jumbotron">
-                  <h1>Hello to My Blog!</h1>
+                  <h1>Write what you think!</h1>
                   <p class="lead">Thank you so much for visitin. This is my test website build with Laravel. Please read my latest post!</p>
                   <p><a class="btn btn-primary btn-lg" href="#" role="button">Popular Post</a></p>
                 </div>
