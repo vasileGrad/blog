@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Post;
+use App\Category;
 use Mail;
 use Session;
 
@@ -21,7 +22,9 @@ class PagesController extends Controller {
 		// Post::all() - means Select * from 'post'
 		$posts = Post::orderBy('created_at', 'desc')->limit(4)->get();
 
-		return view('pages.welcome')->withPosts($posts);
+        $categories = Category::orderBy('created_at', 'desc')->limit(3)->get();
+
+		return view('pages.welcome')->withPosts($posts)->withCategories($categories);
 	}
 
 	public function getAbout() {

@@ -32,9 +32,17 @@
                 
             </div>
 
-            <div class="col-md-3 col-md-offset-2">
-                <h2>Sidebar</h2>
+            <div class="col-md-4 col-md-offset-1">
+                <h2>Categories</h2><br>
 
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-1">
+                        @foreach($categories as $category)
+                            <p><a href="{{ route('categories.show', $category->id) }}">{{ $category->name }}</a></p><hr>
+                        @endforeach
+                    </div>
+                </div>
+                
             </div>
         </div>
 @endsection
