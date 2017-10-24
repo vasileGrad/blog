@@ -7,7 +7,7 @@
 	<div class="row">
 		<div class="col-md-8 col-md-offset-2">
 			@if ($post->image)
-				<img src="{{ asset('images/' . $post->image) }}" height="400" width="700" />
+				<img src="{{ asset('images/' . $post->image) }}" height="300" width="600" />
 			@endif
 			<h1>{{ $post->title }}</h1>
 			<p>{!! $post->body !!}</p>
@@ -46,7 +46,7 @@
 				{{ Form::open(['route' => ['comments.store', $post->id], 'method' => 'POST']) }}
 
 					<div class="row">
-						<div class="col-md-12">
+						<div class="col-md-9 col-md-offset-1">
 							{{ Form::label('comment', "Comment:") }}
 							{{ Form::textarea('comment', null, ['class' => 'form-control', 'rows' => '5']) }}
 

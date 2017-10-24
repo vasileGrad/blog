@@ -30,6 +30,10 @@
 	margin-top: 50px;
 }
 
+.margin-top-well {
+	margin-top: 100px;
+}
+
 .margin-right-button {
 	margin-right: 10px;
 }
@@ -73,4 +77,8 @@
 
 .comments-title>span {
 	margin-right: 15px;
+}
+
+.center-title {
+	text-align: center;
 }

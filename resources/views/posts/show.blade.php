@@ -27,7 +27,6 @@
 						<thead>
 							<tr>
 								<th>Name</th>
-								<th>Email</th>
 								<th>Comment</th>
 								<th width="70px"></th>
 							</tr>
@@ -37,11 +36,12 @@
 							@foreach ($post->comments as $comment)
 							<tr>
 								<td>{{ $comment->name }}</td>
-								<td>{{ $comment->email }}</td>
 								<td>{{ $comment->comment }}</td>
 								<td>
-									<a href="{{ route('comments.edit', $comment->id) }}" class="btn btn-xs btn-primary"><span class="glyphicon glyphicon-pencil"></span></a>
-									<a href="{{ route('comments.delete', $comment->id) }}" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-trash"></span></a>
+									@if ($comment->email == Auth::user()->email)
+										<a href="{{ route('comments.edit', $comment->id) }}" class="btn btn-xs btn-primary"><span class="glyphicon glyphicon-pencil"></span></a>
+										<a href="{{ route('comments.delete', $comment->id) }}" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-trash"></span></a>
+									@endif
 								</td>
 							</tr>
 							@endforeach

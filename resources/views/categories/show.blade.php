@@ -19,7 +19,7 @@
 				<table class="table">
 					<thead>
 						<tr>
-							<th>#</th>
+							<th></th>
 							<th>Title</th>
 							<th></th>
 						</tr>
@@ -29,7 +29,7 @@
 						<!-- We loop to every single post that is associated with our category -->
 						@foreach ($category->posts as $post)
 						<tr>
-							<th>{{ $post->id }}</th>
+							<th></th>
 							<td>{{ $post->title }}</td>
 							
 							<td><a href="{{ route('posts.show', $post->id) }}" class="btn btn-default btn-xs">View</a></td>

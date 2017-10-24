@@ -23,7 +23,7 @@
 			<table class="table">
 				<thead>
 					<tr>
-						<th>#</th>
+						<th></th>
 						<th>Title</th>
 						<th>Tags</th>
 						<th></th>
@@ -34,7 +34,7 @@
 					<!-- We loop to every single post that is associated with our tag -->
 					@foreach ($tag->posts as $post)
 					<tr>
-						<th>{{ $post->id }}</th>
+						<th></th>
 						<td>{{ $post->title }}</td>
 						<td>
 							@foreach ($post->tags as $tag) 

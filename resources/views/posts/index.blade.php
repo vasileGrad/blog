@@ -22,7 +22,7 @@
 		<div class="col-md-10 col-md-offset-1">
 			<table class="table">
 				<thead>
-					<th>#</th>
+					<th></th>
 					<th>Title</th>
 					<th>Body</th>
 					<th>Created At</th>
@@ -33,7 +33,7 @@
 					
 					@foreach ($posts as $post)
 						<tr>
-							<th>{{ $post->id }}</th>
+							<th></th>
 							<td>{{ $post->title }}</td>
 							<td>{{ substr(strip_tags($post->body), 0, 50) }}{{ strlen(strip_tags($post->body)) > 50 ? "..." : "" }}</td>
 							<td>{{ date('M j, Y', strtotime($post->created_at)) }}</td>

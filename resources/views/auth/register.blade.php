@@ -3,9 +3,9 @@
 @section('title', '| Register')
 
 @section('content')
-
+	<h1 class="center-title">Registration</h1>
 	<div class="row">
-		<div class="col-md-6 col-md-offset-3">
+		<div class="col-md-6 col-md-offset-3 form-spacing-top">
 			{!! Form::open() !!}
 
 				{{ Form::label('name', "Name:") }}

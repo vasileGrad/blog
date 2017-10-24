@@ -3,9 +3,10 @@
 @section('title', '| Login')
 
 @section('content')
-	
+
+	<h1 class="center-title">Login</h1>
 	<div class="row">
-		<div class="col-md-6 col-md-offset-3">
+		<div class="col-md-6 col-md-offset-3 form-spacing-top">
 			{!! Form::open() !!} {{-- will add csrf_form protection and will open the form--}}
 
 			{{ Form::label('email', 'Email:') }}

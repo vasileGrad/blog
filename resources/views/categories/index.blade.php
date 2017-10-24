@@ -6,11 +6,11 @@
 
 	<div class="row">
 		<div class="col-md-8">
-			<h1>Categories</h1>
+			<h1 class="center-title">Categories</h1>
 			<table class="table">
 				<thead>
 					<tr>
-						<th>#</th>
+						<th></th>
 						<th>Name</th>
 					</tr>
 				</thead>
@@ -18,7 +18,7 @@
 				<tbody>
 					@foreach ($categories as $category)
 					<tr>
-						<th>{{ $category->id}}</th>
+						<th></th>
 						<td><a href="{{ route('categories.show', $category->id) }}">{{ $category->name }}</a></td>
 					</tr>
 					@endforeach
@@ -27,9 +27,9 @@
 		</div> <!-- end of .col-md-8 -->
 
 		<div class="col-md-3">
-			<div class="well">
+			<div class="well margin-top-well">
 				{!! Form::open(['route' => 'categories.store', 'method' => 'POST']) !!}
-					<h2>New Category</h2>
+				
 					{{ Form::label('name', 'Name:') }}
 					{{ Form::text('name', null, ['class' => 'form-control']) }}
 
