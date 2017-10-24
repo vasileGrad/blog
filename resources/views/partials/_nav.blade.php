@@ -33,6 +33,7 @@
           </ul>
         </li>
         @else
+          <a href=" {{ route('register') }}" class="btn btn-default margin-top-nav margin-right-button">Register</a>
           <a href=" {{ route('login') }}" class="btn btn-default margin-top-nav">Login</a>
         @endif
       </ul>

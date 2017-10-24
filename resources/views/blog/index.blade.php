@@ -5,8 +5,8 @@
 @section('content')
 
 	<div class="row">
-		<div class="col-md-9 col-md-offset-1">
-            <img src="images/top_posts.png" alt="" height="190" width="900" />
+		<div class="col-md-10 col-md-offset-1">
+            <img src="images/top_posts.png" alt="" height="200" width="1000" />
         </div>
 	</div>
 
