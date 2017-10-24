@@ -6,16 +6,12 @@
 
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
-                <div class="jumbotron">
-                  <h1>Write what you think!</h1>
-                  <p class="lead">Thank you so much for visitin. This is my test website build with Laravel. Please read my latest post!</p>
-                  <p><a class="btn btn-primary btn-lg" href="#" role="button">Popular Post</a></p>
-                </div>
+                <img src="images/blog.jpg" alt="" height="170" width="1000" />
             </div>
         </div> <!-- end of header .row -->
 
         <div class="row">
-            <div class="col-md-6 col-md-offset-1">
+            <div class="col-md-6 col-md-offset-1 margin-image">
 
                 @foreach($posts as $post)
 
@@ -32,7 +28,7 @@
                 
             </div>
 
-            <div class="col-md-3 col-md-offset-1">
+            <div class="col-md-3 col-md-offset-1 margin-image">
                 <div class="list-group">
                               <a href="{{ route('categories.index') }}" class="list-group-item active"><h4>
                                 Categories

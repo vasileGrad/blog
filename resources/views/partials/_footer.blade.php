@@ -1,6 +1,6 @@
 	<hr>
 
-    <p class="text-center">Copyright Vasile Grad - All Rights Reserved</p>
+    <p class="text-center"> All Rights Reserved &copy; 2017 Grad Vasile</p>
 
 
     

@@ -5,9 +5,9 @@
 @section('content')
 
 	<div class="row">
-		<div class="col-md-8 col-md-offset-2">
-			<h1>Blog</h1>
-		</div>
+		<div class="col-md-9 col-md-offset-1">
+            <img src="images/top_posts.png" alt="" height="190" width="900" />
+        </div>
 	</div>
 
 	@foreach($posts as $post)

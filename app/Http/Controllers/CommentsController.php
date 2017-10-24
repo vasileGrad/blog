@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Comment;
 use App\Post;
 use Session;
+use Auth;
 
 class CommentsController extends Controller
 {
@@ -24,17 +25,18 @@ class CommentsController extends Controller
     public function store(Request $request, $post_id)
     {
         $this->validate($request, array(
-            'name'       => 'required|max:255',
-            'email'      => 'required|email|max:255',
             'comment'    => 'required|min:5|max:2000'
             ));
 
         // grabs the post object
         $post = Post::find($post_id);
 
+        $auth_name = Auth::user()->name;
+        $auth_email = Auth::user()->email;
+
         $comment = new Comment();
-        $comment->name = $request->name;
-        $comment->email = $request->email;
+        $comment->name = $auth_name;
+        $comment->email = $auth_email;
         $comment->comment = $request->comment;
         $comment->approved = true;
         $comment->post()->associate($post);
