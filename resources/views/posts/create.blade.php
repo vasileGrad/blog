@@ -52,7 +52,9 @@
 			    {{ Form::label('body', 'Post Body:', ['class' => 'margin-top-nav'])}}
 			    {{ Form::textarea('body', null, array('class' => 'form-control')) }}
 
-			    {{ Form::submit('Create Post', array('class' => 'btn btn-success btn-lg btn-block', 'style' => 'margin-top: 20px;')) }}
+			    <div class="col-md-6 col-md-offset-3">
+			    	{{ Form::submit('Create Post', array('class' => 'btn btn-success btn-lg btn-block', 'style' => 'margin-top: 20px;')) }}
+			    </div>
 			{!! Form::close() !!}
 
 		</div>

@@ -4,7 +4,7 @@
 
 @section('content')
 
-	<h1 class="center-title">Login</h1>
+	<h1 class="center-title">Sign In</h1>
 	<div class="row">
 		<div class="col-md-6 col-md-offset-3 form-spacing-top">
 			{!! Form::open() !!} {{-- will add csrf_form protection and will open the form--}}
@@ -19,7 +19,9 @@
 			{{ Form::checkbox('remember') }}{{ Form::label('remember', 'Remember Me') }}
 
 			<br>
-			{{ Form::submit('Login', ['class' => 'btn btn-primary btn-block']) }}
+			<div class="col-md-6 col-md-offset-3">
+				{{ Form::submit('Login', ['class' => 'btn btn-primary btn-block']) }}
+			</div>
 
 			{!! Form::close() !!}
 		</div>

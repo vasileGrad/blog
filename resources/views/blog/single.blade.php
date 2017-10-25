@@ -50,7 +50,9 @@
 							{{ Form::label('comment', "Comment:") }}
 							{{ Form::textarea('comment', null, ['class' => 'form-control', 'rows' => '5']) }}
 
-							{{ Form::submit('Add Comment', ['class' => 'btn btn-success btn-block margin-top-button']) }}
+							<div class="col-md-6 col-md-offset-3">
+								{{ Form::submit('Add Comment', ['class' => 'btn btn-success btn-block margin-top-button']) }}
+							</div>
 						</div>
 					</div>
 
