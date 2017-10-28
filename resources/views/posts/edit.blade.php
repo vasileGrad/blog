@@ -42,7 +42,7 @@
 
 				'form-spacing-top' - we created in the css
 				-->
-			{{ Form::label('slug', 'Slug:', ['class' => 'form-spacing-top']) }}
+			{{ Form::label('slug', 'Url:', ['class' => 'form-spacing-top']) }}
 			{{ Form::text('slug', null, ['class' => 'form-control']) }}
 
 			{{ Form::label('category_id', "Category:", ['class' => 'form-spacing-top']) }}
