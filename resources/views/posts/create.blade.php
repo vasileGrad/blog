@@ -11,7 +11,7 @@
 	<script>
 		tinymce.init({
 			selector: 'textarea',
-			plugins: 'link code lists',
+			plugins: 'link code lists image',
 			menubar: false
 		});
 	</script>
